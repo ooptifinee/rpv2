@@ -1,6 +1,6 @@
 import React from "react";
 import logoSvg from "./assets/img/pizza-logo.svg";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Header() {
   return (
