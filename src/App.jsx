@@ -6,11 +6,13 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 
 function App() {
+  const [searchValue, setSearchValue] = React.useState("");
+
   return (
     <div className="wrapper">
-      <Header />
+      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home searchValue={searchValue} />} />
         <Route path="*" element={<NotFount />} />
       </Routes>
     </div>
