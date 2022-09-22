@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import Skeleton from "../components/pizzaBlock/Skeleton";
@@ -11,9 +11,10 @@ const Home = () => {
   let [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoryId, setCategoryId] = React.useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [sort, setSort] = React.useState({
     name: "популярності",
-    sortProperty: "price",
+    sortProperty: "rating",
   });
 
   React.useEffect(() => {
@@ -24,14 +25,14 @@ const Home = () => {
     const search = searchValue ? `&search=${searchValue}` : "";
 
     fetch(
-      `https://63091c1df8a20183f76ebb75.mockapi.io/items?${category}${search}&sortBy=${sortBy}&order=${order}`
+      `https://63091c1df8a20183f76ebb75.mockapi.io/items?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}&${search}`
     )
       .then((res) => res.json())
       .then((json) => {
         setItems(json);
         setIsLoading(false);
       });
-  }, [categoryId, sort, searchValue]);
+  }, [categoryId, sort, searchValue, currentPage]);
   const skeleton = [...new Array(3)].map((_, index) => (
     <Skeleton key={index} />
   ));
@@ -54,7 +55,7 @@ const Home = () => {
           <h2 className="content__title">Всі піцци</h2>
           <div className="content__items">{isLoading ? skeleton : pizzas}</div>
         </div>
-        <Pagination/>
+        <Pagination onChangedPage={setCurrentPage}/>
       </div>
     </>
   );
