@@ -1,5 +1,7 @@
 import React from "react";
 import logoSvg from "./assets/img/pizza-logo.svg";
+import { NavLink } from "react-router-dom";
+import Search from "./Search/Search";
 
 function Header() {
   return (
@@ -10,11 +12,12 @@ function Header() {
             <img width="38" src={logoSvg} alt="Pizza logo" />
             <div>
               <h1>React Pizza</h1>
-              <p>самая вкусная пицца во вселенной</p>
+              <p>сама смачна піцца в галактиці</p>
             </div>
           </div>
+          <Search />
           <div className="header__cart">
-            <a href="/cart.html" className="button button--cart">
+            <NavLink to="/cart.html" className="button button--cart">
               <span>520 ₽</span>
               <div className="button__delimiter"></div>
               <svg
@@ -47,7 +50,7 @@ function Header() {
                 />
               </svg>
               <span>3</span>
-            </a>
+            </NavLink>
           </div>
         </div>
       </div>

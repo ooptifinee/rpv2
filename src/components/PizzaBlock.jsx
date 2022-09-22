@@ -1,32 +1,40 @@
 import React from "react";
 
-function PizzaBlock({title, price, imageUrl, sizes, types}) {
-    const typeNames = ['тонка', 'традиційна']
-    const [activeType, setActiveType] = React.useState(0)
-    const [activeSize, setActiveSize] = React.useState(0)
+function PizzaBlock({ title, price, imageUrl, sizes, types }) {
+  const typeNames = ["тонка", "традиційна"];
+  const [activeType, setActiveType] = React.useState(0);
+  const [activeSize, setActiveSize] = React.useState(0);
 
   return (
     <div className="pizza-block">
-      <img
-        className="pizza-block__image"
-        src={imageUrl}
-        alt="Pizza"
-      />
+      <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-            {
-                types.map((type) => (<li onClick={() => setActiveType(type)} className={activeType === type ? 'active' : ''} key={type}>{typeNames[type]}</li>))
-            }
+          {types.map((type) => (
+            <li
+              onClick={() => setActiveType(type)}
+              className={activeType === type ? "active" : ""}
+              key={type}
+            >
+              {typeNames[type]}
+            </li>
+          ))}
         </ul>
         <ul>
-            {
-                sizes.map((size, i) => <li onClick={() => setActiveSize(i)} className={activeSize === i ? 'active' : ''} key={i}>{size} см.</li>)
-            }
+          {sizes.map((size, i) => (
+            <li
+              onClick={() => setActiveSize(i)}
+              className={activeSize === i ? "active" : ""}
+              key={i}
+            >
+              {size} см.
+            </li>
+          ))}
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">{price}</div>
+        <div className="pizza-block__price">{price} грн</div>
         <button className="button button--outline button--add">
           <svg
             width="12"

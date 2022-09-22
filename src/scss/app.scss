@@ -23,9 +23,25 @@ body {
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    
+    @media (max-width: 1400px) {
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 1100px) {
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 772px) {
+      grid-template-rows: 1fr;
+      grid-template-columns: 1fr;
+    }
   }
 
   &__top {
@@ -240,7 +256,6 @@ body {
 
         span {
           color: darken($color: $gray-line, $amount: 20);
-          font-weight: 500;
           font-weight: 600;
         }
 
@@ -288,7 +303,7 @@ body {
       color: #777777;
     }
 
-    icon {
+    &icon {
       position: relative;
       top: 2px;
     }
