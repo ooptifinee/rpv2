@@ -4,6 +4,7 @@ import Sort from "../components/Sort";
 import Skeleton from "../components/pizzaBlock/Skeleton";
 import PizzaBlock from "../components/pizzaBlock";
 import { SearchContext } from "../App";
+import Pagination from "../components/Pagination/Pagination";
 
 const Home = () => {
   const { searchValue } = React.useContext(SearchContext);
@@ -53,6 +54,7 @@ const Home = () => {
           <h2 className="content__title">Всі піцци</h2>
           <div className="content__items">{isLoading ? skeleton : pizzas}</div>
         </div>
+        <Pagination/>
       </div>
     </>
   );
