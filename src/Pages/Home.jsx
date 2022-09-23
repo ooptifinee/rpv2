@@ -5,22 +5,25 @@ import Skeleton from "../components/pizzaBlock/Skeleton";
 import PizzaBlock from "../components/pizzaBlock";
 import { SearchContext } from "../App";
 import Pagination from "../components/Pagination/Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategoryId } from "../redux/slices/filterSlice";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const categoryId = useSelector((state) => state.filter.categoryId);
+  const sortType = useSelector((state) => state.filter.sort.sortProperty);
   const { searchValue } = React.useContext(SearchContext);
   let [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [categoryId, setCategoryId] = React.useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sort, setSort] = React.useState({
-    name: "популярності",
-    sortProperty: "rating",
-  });
+  const onChangeCategory = (id) => {
+    dispatch(setCategoryId(id));
+  };
 
   React.useEffect(() => {
     setIsLoading(true);
-    const sortBy = sort.sortProperty.replace("-", "");
-    const order = sort.sortProperty.includes("-") ? "asc" : "desc";
+    const sortBy = sortType.replace("-", "");
+    const order = sortType.includes("-") ? "asc" : "desc";
     const category = categoryId > 0 ? `&category=${categoryId}` : "";
     const search = searchValue ? `&search=${searchValue}` : "";
 
@@ -32,7 +35,7 @@ const Home = () => {
         setItems(json);
         setIsLoading(false);
       });
-  }, [categoryId, sort, searchValue, currentPage]);
+  }, [categoryId, sortType, searchValue, currentPage]);
   const skeleton = [...new Array(3)].map((_, index) => (
     <Skeleton key={index} />
   ));
@@ -45,17 +48,15 @@ const Home = () => {
           <div className="content__top">
             <Categories
               category={categoryId}
-              onClickCategory={(i) => {
-                setCategoryId(i);
-              }}
+              onClickCategory={onChangeCategory}
             />
-            <Sort sort={sort} setSort={(i) => setSort(i)} />
+            <Sort />
           </div>
 
           <h2 className="content__title">Всі піцци</h2>
           <div className="content__items">{isLoading ? skeleton : pizzas}</div>
         </div>
-        <Pagination onChangedPage={setCurrentPage}/>
+        <Pagination onChangedPage={setCurrentPage} />
       </div>
     </>
   );
