@@ -7,6 +7,7 @@ import { SearchContext } from "../App";
 import Pagination from "../components/Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategoryId } from "../redux/slices/filterSlice";
+import axios from "axios";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -27,15 +28,25 @@ const Home = () => {
     const category = categoryId > 0 ? `&category=${categoryId}` : "";
     const search = searchValue ? `&search=${searchValue}` : "";
 
-    fetch(
-      `https://63091c1df8a20183f76ebb75.mockapi.io/items?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}&${search}`
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setItems(json);
+    // fetch(
+    //   `https://63091c1df8a20183f76ebb75.mockapi.io/items?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}&${search}`
+    // )
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //     setItems(json);
+    //     setIsLoading(false);
+    //   });
+
+    axios
+      .get(
+        `https://63091c1df8a20183f76ebb75.mockapi.io/items?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}&${search}`
+      )
+      .then((res) => {
+        setItems(res.data);
         setIsLoading(false);
       });
   }, [categoryId, sortType, searchValue, currentPage]);
+
   const skeleton = [...new Array(3)].map((_, index) => (
     <Skeleton key={index} />
   ));
