@@ -2,15 +2,19 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSort } from "../redux/slices/filterSlice";
 
+export const sortList = [
+  { name: "Популярності(DESC)", sortProperty: "rating" },
+  { name: "Популярності(ASC)", sortProperty: "-rating" },
+  { name: "Ціні(DESC)", sortProperty: "price" },
+  { name: "Ціні(ASC)", sortProperty: "-price" },
+  { name: "Алфавіту(DESC)", sortProperty: "title" },
+  { name: "Алфавіту(ASC)", sortProperty: "-title" },
+];
+
 function Sort() {
   const dispatch = useDispatch();
   const sortId = useSelector((state) => state.filter.sort);
   const [sortVisible, setSortVisible] = React.useState(false);
-  const list = [
-    { name: "Популярності", sortProperty: "rating" },
-    { name: "Ціні", sortProperty: "price" },
-    { name: "Алфавіту", sortProperty: "title" },
-  ];
 
   const onClickSelect = (obj) => {
     dispatch(setSort(obj));
@@ -38,7 +42,7 @@ function Sort() {
       {sortVisible && (
         <div className="sort__popup">
           <ul>
-            {list.map((sort, value) => (
+            {sortList.map((sort, value) => (
               <li
                 key={value}
                 onClick={() => onClickSelect(sort)}

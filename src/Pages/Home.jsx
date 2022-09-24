@@ -1,41 +1,52 @@
-import React, { useState } from "react";
+import React from "react";
 import Categories from "../components/Categories";
-import Sort from "../components/Sort";
+import Sort, { sortList } from "../components/Sort";
 import Skeleton from "../components/pizzaBlock/Skeleton";
 import PizzaBlock from "../components/pizzaBlock";
 import { SearchContext } from "../App";
 import Pagination from "../components/Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategoryId } from "../redux/slices/filterSlice";
+import {
+  setCategoryId,
+  setCurrentPage,
+  setFilters,
+} from "../redux/slices/filterSlice";
 import axios from "axios";
+import qs from "qs";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const categoryId = useSelector((state) => state.filter.categoryId);
-  const sortType = useSelector((state) => state.filter.sort.sortProperty);
+  const sortType = useSelector((state) => state.filter.sort);
+  const currentPage = useSelector((state) => state.filter.currentPage);
   const { searchValue } = React.useContext(SearchContext);
   let [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
   };
+  const onChangedPage = (id) => {
+    dispatch(setCurrentPage(id));
+  };
+
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+      const sort = sortList.find(
+        (obj) => obj.sortProperty === params.sortProperty
+      );
+      dispatch(setFilters({ ...params, sort }));
+    }
+  }, []);
 
   React.useEffect(() => {
     setIsLoading(true);
-    const sortBy = sortType.replace("-", "");
-    const order = sortType.includes("-") ? "asc" : "desc";
+    const sortBy = sortType.sortProperty.replace("-", "");
+    const order = sortType.sortProperty.includes("-") ? "asc" : "desc";
     const category = categoryId > 0 ? `&category=${categoryId}` : "";
     const search = searchValue ? `&search=${searchValue}` : "";
-
-    // fetch(
-    //   `https://63091c1df8a20183f76ebb75.mockapi.io/items?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}&${search}`
-    // )
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     setItems(json);
-    //     setIsLoading(false);
-    //   });
 
     axios
       .get(
@@ -45,7 +56,17 @@ const Home = () => {
         setItems(res.data);
         setIsLoading(false);
       });
-  }, [categoryId, sortType, searchValue, currentPage]);
+  }, [categoryId, sortType.sortProperty, searchValue, currentPage]);
+
+  React.useEffect(() => {
+    const queryString = qs.stringify({
+      sortProperty: sortType.sortProperty,
+      categoryId,
+      currentPage,
+    });
+    console.log(queryString);
+    navigate(`?${queryString}`);
+  }, [categoryId, sortType.sortProperty, currentPage]);
 
   const skeleton = [...new Array(3)].map((_, index) => (
     <Skeleton key={index} />
@@ -67,7 +88,7 @@ const Home = () => {
           <h2 className="content__title">Всі піцци</h2>
           <div className="content__items">{isLoading ? skeleton : pizzas}</div>
         </div>
-        <Pagination onChangedPage={setCurrentPage} />
+        <Pagination onChangedPage={onChangedPage} />
       </div>
     </>
   );
