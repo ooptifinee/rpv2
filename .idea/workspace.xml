@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea01a01a-9b0f-476d-a75b-196b3838bc1f" name="Changes" comment="added URL sync (for category and sort">
+    <list default="true" id="ea01a01a-9b0f-476d-a75b-196b3838bc1f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Pagination/Pagination.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Pagination/Pagination.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Sort.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sort.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/slices/filterSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/filterSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,8 +140,16 @@
       <workItem from="1663926889792" duration="8265000" />
       <workItem from="1663950243581" duration="4035000" />
       <workItem from="1664036904785" duration="319000" />
-      <workItem from="1664052474209" duration="1609000" />
+      <workItem from="1664052474209" duration="1646000" />
     </task>
+    <task id="LOCAL-00001" summary="added URL sync (for category and sort">
+      <created>1664054100873</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1664054100873</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
