@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import Categories from "../components/Categories";
 import Sort, { sortList } from "../components/Sort";
 import Skeleton from "../components/pizzaBlock/Skeleton";
-import PizzaBlock from "../components/pizzaBlock";
+import PizzaBlock from "../components/pizzaBlock/index";
 import { SearchContext } from "../App";
 import Pagination from "../components/Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
