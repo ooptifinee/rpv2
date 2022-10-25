@@ -1,6 +1,6 @@
-@import 'variables';
-@import 'libs/normalize';
-@import 'components/all';
+@import "variables";
+@import "libs/normalize";
+@import "components/all";
 
 body {
   background-color: $background;
@@ -27,7 +27,7 @@ body {
 
     grid-template-rows: repeat(1, 1fr);
     grid-template-columns: repeat(4, 1fr);
-    
+
     @media (max-width: 1400px) {
       grid-template-rows: repeat(2, 1fr);
       grid-template-columns: repeat(3, 1fr);
@@ -49,12 +49,15 @@ body {
     align-items: center;
     justify-content: space-between;
 
-
     @media (max-width: 1260px) {
-flex-direction: column;
-    .categories{
-      margin-bottom: 30px;
-    }
+      flex-direction: column;
+      .categories {
+        margin-bottom: 30px;
+        width: 100%;
+        overflow: scroll;
+        ul {
+        }
+      }
     }
   }
 }

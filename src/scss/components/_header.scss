@@ -1,5 +1,5 @@
-@import '../variables';
-
+@import "../variables";
+@import "../../components/Search/Search.module";
 .header {
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
@@ -8,6 +8,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: 895px) {
+      flex-direction: column;
+    }
   }
 
   &__logo {

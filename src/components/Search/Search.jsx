@@ -21,7 +21,7 @@ const Search = () => {
   return (
     <div>
       <input
-        className={style.root}
+        className={style.search}
         type="text"
         placeholder="search..."
         value={value}
