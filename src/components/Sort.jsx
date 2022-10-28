@@ -15,14 +15,27 @@ function Sort() {
   const dispatch = useDispatch();
   const sortId = useSelector((state) => state.filter.sort);
   const [sortVisible, setSortVisible] = React.useState(false);
+  const sortRef = React.useRef();
+  console.log(sortRef.current)
 
   const onClickSelect = (obj) => {
     dispatch(setSort(obj));
     setSortVisible(false);
   };
 
+  React.useEffect(() => {
+    const hidePopUpClick = event => {
+      if (!event.path.includes(sortRef.current)){
+        setSortVisible(sortVisible)
+      }
+    }
+    document.body.addEventListener('click', hidePopUpClick)
+
+    return () => document.body.removeEventListener('click', hidePopUpClick)
+  }, [])
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
