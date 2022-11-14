@@ -1,7 +1,7 @@
 import React from "react";
 import "./scss/app.scss";
 import Header from "./components/Header";
-import NotFount from "./Pages/NotFound/NotFount";
+import Basket from "./Pages/Basket/Basket";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 
@@ -15,7 +15,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="*" element={<NotFount />} />
+          <Route path="*" element={<Basket />} />
         </Routes>
       </SearchContext.Provider>
     </div>

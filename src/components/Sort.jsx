@@ -32,7 +32,7 @@ function Sort() {
     document.body.addEventListener('click', hidePopUpClick)
 
     return () => document.body.removeEventListener('click', hidePopUpClick)
-  }, [])
+  }, [sortVisible])
 
   return (
     <div ref={sortRef} className="sort">
