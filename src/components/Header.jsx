@@ -21,7 +21,7 @@ function Header() {
           <Search />
           <div className="header__cart">
             <NavLink to="/cart.html" className="button button--cart">
-              <span>{totalPrice} ₽</span>
+              <span>{totalPrice} ₴</span>
               <div className="button__delimiter"></div>
               <svg
                 width="18"

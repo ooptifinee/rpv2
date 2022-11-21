@@ -49,7 +49,7 @@ function Sort() {
             fill="#2C2C2C"
           />
         </svg>
-        <b>Сортировка по:</b>
+        <b>Сортування по:</b>
         <span onClick={() => setSortVisible(!sortVisible)}>{sortId.name}</span>
       </div>
       {sortVisible && (

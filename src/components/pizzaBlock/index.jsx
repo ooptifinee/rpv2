@@ -67,7 +67,7 @@ function Index({ id, title, price, imageUrl, sizes, types }) {
                 fill="white"
               />
             </svg>
-            <span>Добавить</span>
+            <span>Добавити</span>
             {addedCount > 0 && <i>{addedCount}</i>}
           </button>
         </div>
