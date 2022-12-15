@@ -26,9 +26,11 @@ const Home = () => {
   const { searchValue } = React.useContext(SearchContext);
   let [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [startLoad, setStartLoad] = React.useState(true)
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
   };
+
   const onChangedPage = (id) => {
     dispatch(setCurrentPage(id));
   };
@@ -43,6 +45,24 @@ const Home = () => {
       isSearch.current = true;
     }
   }, []);
+
+    React.useEffect(()=> {
+      if(currentPage === 0 && startLoad){
+        function flufi(){
+          axios
+          .get(
+            'https://63091c1df8a20183f76ebb75.mockapi.io/items?page=1&limit=4&sortBy=rating&order=desc'
+          )
+          .then((res) => {
+            setItems(res.data);
+            setTimeout(()=>{
+              setStartLoad(false)
+            }, 3000)
+          });
+        }
+        flufi()
+      }
+    })
 
   const fetchPizzas = () => {
     setIsLoading(true);
@@ -97,7 +117,6 @@ const Home = () => {
             />
             <Sort />
           </div>
-
           <h2 className="content__title">Всі піцци</h2>
           <div className="content__items">{isLoading ? skeleton : pizzas}</div>
         </div>

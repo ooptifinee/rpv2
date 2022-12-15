@@ -15,7 +15,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="*" element={<Basket />} />
+          <Route path="/basked" element={<Basket />} />
         </Routes>
       </SearchContext.Provider>
     </div>

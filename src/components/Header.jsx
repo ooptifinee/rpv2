@@ -11,16 +11,16 @@ function Header() {
     <div>
       <div className="header">
         <div className="container">
-          <div className="header__logo">
+          <NavLink to={'/'} className="header__logo">
             <img width="38" src={logoSvg} alt="Pizza logo" />
             <div>
               <h1>React Pizza</h1>
               <p>найсмачніша піца в галактиці</p>
             </div>
-          </div>
+          </NavLink>
           <Search />
           <div className="header__cart">
-            <NavLink to="/cart.html" className="button button--cart">
+            <NavLink to="/basked" className="button button--cart">
               <span>{totalPrice} ₴</span>
               <div className="button__delimiter"></div>
               <svg
