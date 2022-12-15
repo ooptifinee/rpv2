@@ -97,7 +97,6 @@ const Home = () => {
             />
             <Sort />
           </div>
-
           <h2 className="content__title">Всі піцци</h2>
           <div className="content__items">{isLoading ? skeleton : pizzas}</div>
         </div>

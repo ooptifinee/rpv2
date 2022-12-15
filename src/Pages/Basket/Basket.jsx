@@ -3,7 +3,6 @@ import "./_Basket.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "./CartItem/CartItem";
 import { clearItems } from "../../redux/slices/cartSlice";
-
 const Basket = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
@@ -11,7 +10,6 @@ const Basket = () => {
   const allItems = useSelector((state) =>
     state.cart.items.reduce((sum, item) => sum + item.count, 0)
   );
-
   function onClickClear() {
     if (window.confirm("Очистити всі піцци ?")) {
       dispatch(clearItems());
@@ -93,7 +91,7 @@ const Basket = () => {
                 ></path>
               </svg>
               {/*------------------------------------------------------------------------------------*/}
-              <span onClick={onClickClear}>Очистить корзину</span>
+              <span onClick={onClickClear}>Очистити кошик</span>
             </div>
           </div>
           <div className="cart__items">
@@ -106,10 +104,10 @@ const Basket = () => {
           <div className="cart__bottom">
             <div className="cart__bottom-details">
               <span>
-                Всего пицц: <b>{allItems} шт.</b>
+                Всього: <b>{allItems} шт.</b>
               </span>
               <span>
-                Сумма заказа: <b>{allPrice} ₴</b>
+                Сумма заказу: <b>{allPrice} ₴</b>
               </span>
             </div>
             <div className="cart__bottom-buttons">
@@ -136,7 +134,7 @@ const Basket = () => {
                 <span>Вернутись назад</span>
               </a>
               <div className="button pay-btn">
-                <span>Оплатити зараз</span>
+                <span>Оформити замовлення</span>
               </div>
             </div>
           </div>
