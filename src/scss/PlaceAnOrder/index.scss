@@ -1,0 +1,28 @@
+.orderWrapper{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+    cursor: default;
+    width: 700px;
+    min-width: 20%;
+    max-width: 95%;
+    height: 200px;
+    max-height: 95%;
+    background: rgb(197, 197, 197);
+}
+
+#crossSpan{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    top: 5px;
+    left: 5px;
+    margin: 10px 0;
+    background-color: burlywood;
+    cursor: pointer;
+}

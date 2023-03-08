@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./_Basket.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "./CartItem/CartItem";
 import { clearItems } from "../../redux/slices/cartSlice";
+import Index from "../PlaceAnOrder/Index";
 const Basket = () => {
   const dispatch = useDispatch();
+  const [isOrder, setIsOrder] = useState(false);
   const items = useSelector((state) => state.cart.items);
   const allPrice = useSelector((state) => state.cart.totalPrice);
   const allItems = useSelector((state) =>
@@ -13,6 +15,15 @@ const Basket = () => {
   function onClickClear() {
     if (window.confirm("Очистити всі піцци ?")) {
       dispatch(clearItems());
+    }
+  }
+
+  function onClickOrder(id) {
+    if(id === 1){
+        setIsOrder(true);
+    }
+    if (id === 0){
+        setIsOrder(false);
     }
   }
 
@@ -133,13 +144,14 @@ const Basket = () => {
 
                 <span>Вернутись назад</span>
               </a>
-              <div className="button pay-btn">
+              <div className="button pay-btn" onClick={() => onClickOrder(1)}>
                 <span>Оформити замовлення</span>
               </div>
             </div>
           </div>
         </div>
       </div>
+      {isOrder ? <Index onClickCross={onClickOrder} /> : ''}
     </>
   );
 };
