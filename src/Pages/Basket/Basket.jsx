@@ -150,8 +150,8 @@ const Basket = () => {
             </div>
           </div>
         </div>
+        {isOrder ? <Index onClickCross={onClickOrder} /> : ''}
       </div>
-      {isOrder ? <Index onClickCross={onClickOrder} /> : ''}
     </>
   );
 };
